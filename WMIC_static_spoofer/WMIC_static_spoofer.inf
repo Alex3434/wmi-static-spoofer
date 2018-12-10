@@ -1,0 +1,86 @@
+;
+; WMIC_static_spoofer.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample ; TODO: edit Class
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171} ; TODO: edit ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=WMIC_static_spoofer.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+
+[DestinationDirs]
+DefaultDestDir = 12
+WMIC_static_spoofer_Device_CoInstaller_CopyFiles = 11
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+WMIC_static_spoofer.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%WMIC_static_spoofer.DeviceDesc%=WMIC_static_spoofer_Device, Root\WMIC_static_spoofer ; TODO: edit hw-id
+
+[WMIC_static_spoofer_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+WMIC_static_spoofer.sys
+
+;-------------- Service installation
+[WMIC_static_spoofer_Device.NT.Services]
+AddService = WMIC_static_spoofer,%SPSVCINST_ASSOCSERVICE%, WMIC_static_spoofer_Service_Inst
+
+; -------------- WMIC_static_spoofer driver install sections
+[WMIC_static_spoofer_Service_Inst]
+DisplayName    = %WMIC_static_spoofer.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\WMIC_static_spoofer.sys
+
+;
+;--- WMIC_static_spoofer_Device Coinstaller installation ------
+;
+
+[WMIC_static_spoofer_Device.NT.CoInstallers]
+AddReg=WMIC_static_spoofer_Device_CoInstaller_AddReg
+CopyFiles=WMIC_static_spoofer_Device_CoInstaller_CopyFiles
+
+[WMIC_static_spoofer_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[WMIC_static_spoofer_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[WMIC_static_spoofer_Device.NT.Wdf]
+KmdfService =  WMIC_static_spoofer, WMIC_static_spoofer_wdfsect
+[WMIC_static_spoofer_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+ClassName="Samples" ; TODO: edit ClassName
+DiskName = "WMIC_static_spoofer Installation Disk"
+WMIC_static_spoofer.DeviceDesc = "WMIC_static_spoofer Device"
+WMIC_static_spoofer.SVCDESC = "WMIC_static_spoofer Service"
