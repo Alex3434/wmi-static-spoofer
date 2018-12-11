@@ -21,6 +21,7 @@ Before:<br>
 After:<br>
 <img src="https://i.imgur.com/TwBKMRe.png"/>
 
-## Supported/Tested
+## Supported/Testing
 
-Only tested on Windows 10 16299.125
+Only tested on Windows 10 16299.125<br>
+Add: **disk.EnableUUID="true"** to your VMware .vmx file to enable serialnumbers for your HDD
