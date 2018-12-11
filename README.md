@@ -15,10 +15,10 @@ Fakes the serialnumber for HDDs/diskdrives from kernelmode without hooking anyth
 
 ## Pictures:
 
-Before:
+Before:<br>
 <img src="https://i.imgur.com/0ZAaPBb.png"/>
 
-After:
+After:<br>
 <img src="https://i.imgur.com/TwBKMRe.png"/>
 
 ## Supported/Tested
