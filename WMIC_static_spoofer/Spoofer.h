@@ -61,6 +61,7 @@ void SpoofHDD()
 
 			RtlStringCchPrintfA(pDeviceHDD->pHDDSerial, SERIAL_MAX_LENGTH + 1, "%s", &HDDSPOOFED_TMP);
 
+			//reset the registry entries to the faked serials
 			pRegDevInt(pDeviceHDD);
 
 			HDD_count++;
