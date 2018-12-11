@@ -1,5 +1,9 @@
 # wmi-static-spoofer
 
+## Motivation:
+
+The initial motivation is bypassing HWID detection methods used by intrusive software like anti-cheats, etc. or licensing restrictions implemented in software. The concept is not new but other solutions require a loaded driver at all times and a kernel hook with possible instabilities. This project only uses direct memory manipulation and makes it possible to fake the serials without hooking a function or having a loaded kernel module at all times.
+
 ## Description:
 Fakes the serialnumber for HDDs/diskdrives from kernelmode without hooking anything. The driver can be fully unloaded after changing the serialnumber.
 
