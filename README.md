@@ -13,6 +13,14 @@ Fakes the serialnumber for HDDs/diskdrives from kernelmode without hooking anyth
 - This does **NOT** counter all the ways for getting the serialnumber! I will make a writeup on that later.
 - It also changes the registry entries to the faked serial via a internal kernel function
 
+## Pictures:
+
+Before:
+<img src="https://i.imgur.com/0ZAaPBb.png"/>
+
+After:
+<img src="https://i.imgur.com/TwBKMRe.png"/>
+
 ## Supported/Tested
 
 Only tested on Windows 10 16299.125
