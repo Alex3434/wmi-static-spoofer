@@ -24,4 +24,4 @@ After:<br>
 ## Supported/Testing
 
 Only tested on Windows 10 16299.125<br>
-For testing add: **disk.EnableUUID="true"** to your VMware .vmx file to enable serialnumbers
+For testing purposes add: **disk.EnableUUID="true"** to your VMware .vmx file to enable serialnumbers
